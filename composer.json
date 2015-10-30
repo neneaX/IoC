@@ -1,0 +1,21 @@
+{
+    "name": "neneax/ioc",
+    "description": "Inversion of Control - Dependency Container",
+    "license": "MIT",
+    "authors": [
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+      "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "IoC\\": "src/"
+        }
+    },
+    "target-dir": "",
+    "extra": {
+    }
+}

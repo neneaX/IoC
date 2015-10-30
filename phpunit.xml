@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="./vendor/autoload.php">
+    <logging>
+        <log type="testdox-html" target="./build/testdox.html"></log>
+        <log type="coverage-html" target="./build/coverage"></log>
+    </logging>
+    <filter>
+        <blacklist>
+            <directory>vendor</directory>
+        </blacklist>
+    </filter>
+    <testsuites>
+        <testsuite name="all">
+            <directory suffix="Test.php">tests/</directory>
+            <exclude>/vendor</exclude>
+        </testsuite>
+    </testsuites>
+</phpunit>

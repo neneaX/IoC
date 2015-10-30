@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Tests and documentation" default="main">
+    <target name="main">
+
+        <property name="composer.IS_FILE_EXISTS" value="false" />
+        <exec command="if [ -f 'composer.phar' ]; then echo 'true'; else echo 'false'; fi;" outputProperty="composer.IS_FILE_EXISTS" />
+        <if>
+            <equals arg1="${composer.IS_FILE_EXISTS}" arg2="true" />
+            <then>
+                <echo>[x] Composer found</echo>
+            </then>
+            <else>
+                <exec command="curl https://getcomposer.org/composer.phar -O" />
+                <echo>[x] Composer downloaded to 'composer.phar' file</echo>
+            </else>
+        </if>
+
+        <property name="composer.vendor.IS_DIR_EXISTS" value="false" />
+        <exec command="if [ -d 'vendor' ]; then echo 'true'; else echo 'false'; fi;" outputProperty="composer.vendor.IS_DIR_EXISTS" />
+        <if>
+            <equals arg1="${composer.vendor.IS_DIR_EXISTS}" arg2="true" />
+            <then>
+                <echo>[x] "vendor" folder found</echo>
+            </then>
+            <else>
+                <composer command="install" />
+            </else>
+        </if>
+
+        <property name="phpunit.phar.IS_FILE_EXISTS" value="false" />
+        <exec command="if [ -f 'phpunit.phar' ]; then echo 'true'; else echo 'false'; fi;" outputProperty="phpunit.phar.IS_FILE_EXISTS" />
+        <if>
+            <equals arg1="${phpunit.phar.IS_FILE_EXISTS}" arg2="true" />
+            <then>
+                <echo>[x] "phpunit.phar" file found</echo>
+            </then>
+            <else>
+                <exec command="curl https://phar.phpunit.de/phpunit.phar -O -L" />
+            </else>
+        </if>
+
+        <property name="apigen.phar.IS_FILE_EXISTS" value="false" />
+        <exec command="if [ -f 'apigen.phar' ]; then echo 'true'; else echo 'false'; fi;" outputProperty="apigen.phar.IS_FILE_EXISTS" />
+        <if>
+            <equals arg1="${apigen.phar.IS_FILE_EXISTS}" arg2="true" />
+            <then>
+                <echo>[x] "apigen.phar" file found</echo>
+            </then>
+            <else>
+                <exec command="curl http://apigen.org/apigen.phar -O -L" />
+            </else>
+        </if>
+
+        <delete dir="build" quiet="true" />
+        <exec command="php phpunit.phar" passthru="true" />
+        <exec command="php apigen.phar generate --source=src/ --destination=build/docs/" passthru="true" />
+    </target>
+</project>
