@@ -5,6 +5,7 @@ namespace IoC;
  * Inversion of Control - Dependency Container
  * 
  * @author Andrei Pirjoleanu <andreipirjoleanu@gmail.com>
+ * @author Bogdan Anton <contact@bogdananton.ro>
  *
  * Usage:
  * <code class="php"><pre>

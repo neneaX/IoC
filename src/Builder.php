@@ -1,6 +1,12 @@
 <?php
 namespace IoC;
 
+/**
+ * Builder class used for creating instances of the requested objects
+ *
+ * @author Andrei Pirjoleanu <andrei.pirjoleanu@avangate.com>
+ * @author Bogdan Anton <contact@bogdananton.ro>
+ */
 class Builder
 {
     /**

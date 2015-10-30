@@ -3,6 +3,16 @@
     "description": "Inversion of Control - Dependency Container",
     "license": "MIT",
     "authors": [
+    	{
+            "name": "Andrei Pirjoleanu",
+            "email": "andreipirjoleanu@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Bogdan Anton",
+            "email": "contact@bogdananton.ro",
+            "role": "Developer"
+        }
     ],
     "require": {
         "php": ">=5.3.0"

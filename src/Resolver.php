@@ -6,6 +6,7 @@ namespace IoC;
  * Resolver class used for building instances of the requested objects
  *
  * @author Andrei Pirjoleanu <andrei.pirjoleanu@avangate.com>
+ * @author Bogdan Anton <contact@bogdananton.ro>
  */
 class Resolver
 {
