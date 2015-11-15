@@ -74,14 +74,14 @@ class Container
      */
     public static function getInstance()
     {
-        if (self::$instance === null) {
-            $instance = new Container();
+        if (static::$instance === null) {
+            $instance = new static();
             $instance->initRegister();
-            
-            self::$instance = $instance;
+
+            static::$instance = $instance;
         }
 
-        return self::$instance;
+        return static::$instance;
     }
     
     /**
@@ -144,5 +144,10 @@ class Container
     public function registered($alias)
     {
         return (array_key_exists($alias, $this->registry));
+    }
+
+    public static function reset()
+    {
+        static::$instance = null;
     }
 }

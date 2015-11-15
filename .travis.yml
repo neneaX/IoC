@@ -1,0 +1,17 @@
+language: php
+php:
+  - "5.4"
+
+branches:
+  only:
+    - master
+
+before_script:
+  - composer install --no-interaction
+  - mkdir -p build/logs
+
+script:
+  - phpunit -v -c phpunit.xml --coverage-clover build/logs/clover.xml
+
+notifications:
+  email: false
