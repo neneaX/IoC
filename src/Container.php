@@ -59,12 +59,15 @@ namespace IoC;
  */
 class Container
 {
+    
+    const DEFAULT_INSTANCE_NAME = 'default';
+    
     /**
-     * Singleton instance of Container
+     * Singleton instances of Container
      * 
-     * @var Container
+     * @var Container[]
      */
-    private static $instance;
+    private static $instances;
     
     protected $registry = array();
     
@@ -72,16 +75,20 @@ class Container
      * 
      * @return Container
      */
-    public static function getInstance()
+    public static function getInstance($name = null)
     {
-        if (static::$instance === null) {
+        if (is_null($name)) {
+            $name = static::DEFAULT_INSTANCE_NAME;
+        }
+        
+        if (!isset(static::$instances[$name]) || static::$instances[$name] === null) {
             $instance = new static();
             $instance->initRegister();
 
-            static::$instance = $instance;
+            static::$instances[$name] = $instance;
         }
 
-        return static::$instance;
+        return static::$instances[$name];
     }
     
     /**
@@ -146,8 +153,12 @@ class Container
         return (array_key_exists($alias, $this->registry));
     }
 
-    public static function reset()
+    public static function reset($name = null)
     {
-        static::$instance = null;
+        if (is_null($name)) {
+            $name = static::DEFAULT_INSTANCE_NAME;
+        }
+        
+        static::$instances = null;
     }
 }
