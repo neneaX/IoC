@@ -1,6 +1,11 @@
-language: php
+language: php,java
 php:
   - "5.4"
+sudo: false
+install: true
+
+jdk:
+- oraclejdk8
 
 branches:
   only:
@@ -12,6 +17,11 @@ before_script:
 
 script:
   - phpunit -v -c phpunit.xml --coverage-clover build/logs/clover.xml
+  - ./runSonarQubeAnalysis.sh
 
+cache:
+  directories:
+- '$HOME/.sonar/cache'
 notifications:
   email: false
+
